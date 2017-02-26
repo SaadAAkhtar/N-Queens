@@ -4,14 +4,14 @@ CODE WRITTEN BY OTHER STUDENTS. Saad Akhtar
 */
 
 import java.util.Stack;
+import java.util.Scanner;
 
-public class Saakhta {
- 
-  //***** fill in your code here *****
-  //feel free to add additional methods as necessary
+public class Queens {
+
   public static Stack<Integer> s = new Stack<Integer>();
   public static int count = 0;
 
+  //checks if the placement of a queen is valid
   public static boolean checkValidity(int r, int c) {
     for(int x = 0; x < s.size(); x++) {
       int stackQ = s.get(x);
@@ -24,27 +24,9 @@ public class Saakhta {
   }
  
   //finds and prints out all solutions to the n-queens problem
-
-    /*Create empty stack and set current position to 0
-      Repeat {
-         loop from current position to the last position until a valid position is found //current row
-         if there is a valid position {
-            push the position to stack, set current position to 0 // move to next row
-         }
-         if there is no valid position {
-            if stack is empty, break // stop search
-            else pop from stack, set current position to next position // backtracking to previous row
-         }
-         if stack has size N { // a solution is found
-            pop from stack, set current position to next position // backtracking to find next solution
-         }
-      }
-    */
-
   public static int solve(int n) {
-
-    //***** fill in your code here *****
-	int z = 0;
+	  
+    int z = 0;
 
     for (int row = 0; row < n; row++) {
       for (int col = z; col < n; col++) {
@@ -55,7 +37,7 @@ public class Saakhta {
             }
             if (s.size() == n) {
               count += 1;
-              //printSolution(s);
+              printSolution(s);
               z = s.pop() + 1;
               if (z == n) {
               	while (z == n) {
@@ -89,12 +71,10 @@ public class Saakhta {
     }
 
     return count;
-    //update the following statement to return the number of solutions found
     
-  }//solve()
-  
+  }
+
   //this method prints out a solution from the current stack
-  //(you should not need to modify this method)
   private static void printSolution(Stack<Integer> s) {
     for (int i = 0; i < s.size(); i ++) {
       for (int j = 0; j < s.size(); j ++) {
@@ -102,17 +82,24 @@ public class Saakhta {
           System.out.print("Q ");
         else
           System.out.print("* ");
-      }//for
+      }
       System.out.println();
-    }//for
+    }
     System.out.println();  
-  }//printSolution()
-  
-  // ----- the main method -----
-  // (you shouldn't need to change this method)
+  }
+
   public static void main(String[] args) {
   
-  int n = 14;
+  Scanner in = new Scanner(System.in);
+  
+  System.out.println("Please enter in a number x such that 1 <= x <= 12:");
+  
+  int n = in.nextInt();
+  
+  if (n < 1 || n > 12) {
+    System.out.println("You did not enter a valid number. The program has exited. Please run the program and try again with a valid number.");
+    System.exit(0);
+  }
   
   // pass in parameter n from command line
   if (args.length == 1) {
@@ -120,11 +107,10 @@ public class Saakhta {
     if (n < 1) {
       System.out.println("Incorrect parameter");
       System.exit(-1);
-    }//if   
-  }//if
+    } 
+  }
   
   int number = solve(n);
   System.out.println("There are " + number + " solutions to the " + n + "-queens problem.");
- }//main()
-  
+ }
 }
