@@ -6,7 +6,7 @@ CODE WRITTEN BY OTHER STUDENTS. Saad Akhtar
 import java.util.Stack;
 import java.util.Scanner;
 
-public class Queens {
+public class NQueens {
 
   public static Stack<Integer> s = new Stack<Integer>();
   public static int count = 0;
